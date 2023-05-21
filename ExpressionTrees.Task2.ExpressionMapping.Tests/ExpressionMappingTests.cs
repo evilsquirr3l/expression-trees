@@ -8,8 +8,6 @@ namespace ExpressionTrees.Task2.ExpressionMapping.Tests
     [TestClass]
     public class ExpressionMappingTests
     {
-        // todo: add as many test methods as you wish, but they should be enough to cover basic scenarios of the mapping generator
-
         [TestMethod]
         public void MappingBetweenDifferentProperties()
         {
@@ -17,7 +15,6 @@ namespace ExpressionTrees.Task2.ExpressionMapping.Tests
             var mapper = mappingGenerator.Generate<Bar, Foo>(
                 new Dictionary<string, string>
                 {
-                    { "Id", "Guid" },
                     { "Income", "Salary" }
                 }
             );
@@ -25,8 +22,24 @@ namespace ExpressionTrees.Task2.ExpressionMapping.Tests
             var bar = new Bar { Id = Guid.NewGuid().ToString(), Income = 123.45M };
             var foo = mapper.Map(bar);
 
-            Assert.AreEqual(bar.Id, foo.Guid);
             Assert.AreEqual(bar.Income, foo.Salary);
+        }
+        
+        [TestMethod]
+        public void MappingBetweenDifferentTypes()
+        {
+            var mappingGenerator = new MappingGenerator();
+            var mapper = mappingGenerator.Generate<Bar, Foo>(
+                new Dictionary<string, string>
+                {
+                    { "Id", "Guid" }
+                }
+            );
+
+            var bar = new Bar { Id = Guid.NewGuid().ToString(), Income = 123.45M };
+            var foo = mapper.Map(bar);
+
+            Assert.AreEqual(bar.Id, foo.Guid.ToString());
         }
     }
 }
