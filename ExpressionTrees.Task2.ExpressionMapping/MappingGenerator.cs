@@ -24,11 +24,13 @@ namespace ExpressionTrees.Task2.ExpressionMapping
 
                 if (destinationProperty.PropertyType != sourceProperty.PropertyType)
                 {
-                    if (sourceProperty.PropertyType == typeof(string) &&
-                        destinationProperty.PropertyType == typeof(Guid))
+                    if (sourceProperty.PropertyType == typeof(string) && destinationProperty.PropertyType == typeof(Guid))
                     {
-                        conversionExpression = Expression.Call(typeof(Guid), "Parse", Type.EmptyTypes,
-                            sourcePropertyAccess);
+                        conversionExpression = Expression.Call(typeof(Guid), "Parse", Type.EmptyTypes, sourcePropertyAccess);
+                    }
+                    else if (sourceProperty.PropertyType == typeof(decimal) && destinationProperty.PropertyType == typeof(double))
+                    {
+                        conversionExpression = Expression.Convert(sourcePropertyAccess, destinationProperty.PropertyType);
                     }
                     else
                     {

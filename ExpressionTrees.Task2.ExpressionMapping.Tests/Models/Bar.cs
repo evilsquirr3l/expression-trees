@@ -5,5 +5,7 @@
         public string Id { get; set; }
 
         public decimal Income { get; set; }
+        
+        public decimal MyDecimal { get; set; }
     }
 }

@@ -40,6 +40,7 @@ namespace ExpressionTrees.Task2.ExpressionMapping.Tests
             var foo = mapper.Map(bar);
 
             Assert.AreEqual(bar.Id, foo.Guid.ToString());
+            Assert.AreEqual(decimal.ToDouble(bar.MyDecimal), foo.MyDouble);
         }
     }
 }
