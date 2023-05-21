@@ -2,6 +2,8 @@
 {
     internal class Foo
     {
-        // add here some properties
+        public string Guid { get; set; }
+
+        public decimal Salary { get; set; }
     }
 }

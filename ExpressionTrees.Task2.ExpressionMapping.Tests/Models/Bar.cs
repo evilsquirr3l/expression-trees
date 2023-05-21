@@ -2,6 +2,8 @@
 {
     internal class Bar
     {
-        // add here some other properties
+        public string Id { get; set; }
+
+        public decimal Income { get; set; }
     }
 }
